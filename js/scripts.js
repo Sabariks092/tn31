@@ -182,19 +182,126 @@
     });
 
     // ============================================
-    // HOVER EFFECTS FOR FEATURE CARDS
+    // MODERN HOVER EFFECTS FOR CARDS
     // ============================================
-    const featureCards = document.querySelectorAll('.feature-card');
+    const featureCards = document.querySelectorAll('.service-card, .testimonial-card');
 
     featureCards.forEach(card => {
         card.addEventListener('mouseenter', function () {
-            this.style.transform = 'translateY(-10px)';
+            this.style.transform = 'translateY(-15px) scale(1.02)';
+            this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
         });
 
         card.addEventListener('mouseleave', function () {
-            this.style.transform = 'translateY(0)';
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '';
         });
     });
+
+    // ============================================
+    // NOTIFICATION SYSTEM
+    // ============================================
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.innerHTML = `
+            <div class="notification-content">
+                <i class="notification-icon bi ${getNotificationIcon(type)}"></i>
+                <span>${message}</span>
+                <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+        `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 100);
+
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }
+        }, 5000);
+    }
+
+    function getNotificationIcon(type) {
+        const icons = {
+            success: 'bi-check-circle-fill',
+            error: 'bi-exclamation-triangle-fill',
+            warning: 'bi-exclamation-circle-fill',
+            info: 'bi-info-circle-fill'
+        };
+        return icons[type] || icons.info;
+    }
+
+    // ============================================
+    // ENHANCED FORM VALIDATION
+    // ============================================
+    forms.forEach(form => {
+        const inputs = form.querySelectorAll('.form-control, .form-select');
+
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                validateInput(input);
+            });
+
+            input.addEventListener('input', function() {
+                if (input.classList.contains('is-invalid')) {
+                    validateInput(input);
+                }
+            });
+        });
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (!form.checkValidity()) {
+                form.style.animation = 'shake 0.5s ease';
+                setTimeout(() => {
+                    form.style.animation = '';
+                }, 500);
+
+                form.classList.add('was-validated');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                const originalText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    Processing...
+                `;
+
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                    showNotification('Form submitted successfully!', 'success');
+                    form.reset();
+                    form.classList.remove('was-validated');
+                }, 2000);
+            }
+        });
+    });
+
+    function validateInput(input) {
+        const isValid = input.checkValidity();
+
+        if (isValid) {
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+        } else {
+            input.classList.remove('is-valid');
+            input.classList.add('is-invalid');
+        }
+    }
 
     // ============================================
     // PARTNER LOGO ANIMATION ON SCROLL
@@ -247,9 +354,41 @@
 
         if (reason === 'tour-inquiry') {
             fieldsHTML = `
+                <div class="row g-2">
+                    <div class="col-md-6 mb-3">
+                        <label for="startLocation" class="form-label">Start Location</label>
+                        <input type="text" class="form-control" id="startLocation" placeholder="Starting city" required>
+                        <div class="invalid-feedback">Please provide a start location.</div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="endDestination" class="form-label">End Destination</label>
+                        <input type="text" class="form-control" id="endDestination" placeholder="Destination city" required>
+                        <div class="invalid-feedback">Please provide an end destination.</div>
+                    </div>
+                </div>
+
+                <div class="row g-2">
+                    <div class="col-md-6 mb-3">
+                        <label for="startDateInquiry" class="form-label">Start Date</label>
+                        <input type="date" class="form-control" id="startDateInquiry" required>
+                        <div class="invalid-feedback">Please provide a start date.</div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="endDateInquiry" class="form-label">End Date</label>
+                        <input type="date" class="form-control" id="endDateInquiry" required>
+                        <div class="invalid-feedback">Please provide an end date.</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="numberOfPeople" class="form-label">Number of People</label>
+                    <input type="number" min="1" class="form-control" id="numberOfPeople" placeholder="e.g., 2" required>
+                    <div class="invalid-feedback">Please specify number of people.</div>
+                </div>
+
                 <div class="mb-3">
                     <label for="packageSelection" class="form-label">Select Package</label>
-                    <select class="form-select" id="packageSelection">
+                    <select class="form-select" id="packageSelection" required>
                         <option value="">Choose a package...</option>
                         <option value="temple-tour">Temple Tour Package</option>
                         <option value="hill-station">Hill Station Escape</option>
@@ -258,6 +397,7 @@
                         <option value="nilgiri-railway">Nilgiri Mountain Railway</option>
                         <option value="complete-tour">Complete Tamil Nadu Tour</option>
                     </select>
+                    <div class="invalid-feedback">Please select a package if applicable.</div>
                 </div>
             `;
         } else if (reason === 'partnership' || reason === 'collaboration') {
@@ -280,6 +420,20 @@
         }
 
         dynamicFields.innerHTML = fieldsHTML;
+        // Attach validation handlers for any newly injected inputs/selects
+        const newInputs = dynamicFields.querySelectorAll('.form-control, .form-select');
+
+        newInputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                validateInput(input);
+            });
+
+            input.addEventListener('input', function() {
+                if (input.classList.contains('is-invalid')) {
+                    validateInput(input);
+                }
+            });
+        });
     }
 
     if (contactReason) {
@@ -385,6 +539,32 @@
                     formData.businessType = businessType.value;
                 }
 
+                    // Tour inquiry specific fields
+                    const startLocation = document.getElementById('startLocation');
+                    if (startLocation) {
+                        formData.startLocation = startLocation.value;
+                    }
+
+                    const endDestination = document.getElementById('endDestination');
+                    if (endDestination) {
+                        formData.endDestination = endDestination.value;
+                    }
+
+                    const startDateInquiry = document.getElementById('startDateInquiry');
+                    if (startDateInquiry) {
+                        formData.startDate = startDateInquiry.value;
+                    }
+
+                    const endDateInquiry = document.getElementById('endDateInquiry');
+                    if (endDateInquiry) {
+                        formData.endDate = endDateInquiry.value;
+                    }
+
+                    const numberOfPeople = document.getElementById('numberOfPeople');
+                    if (numberOfPeople) {
+                        formData.numberOfPeople = numberOfPeople.value;
+                    }
+
                 // Send to Telegram (placeholder function)
                 sendToTelegram(formData, 'Contact Form');
 
@@ -433,6 +613,23 @@
             if (data.businessType) {
                 message += `💼 *Business Type:* ${data.businessType}\n`;
             }
+
+                // Tour inquiry fields
+                if (data.startLocation) {
+                    message += `📍 *Start Location:* ${data.startLocation}\n`;
+                }
+                if (data.endDestination) {
+                    message += `📍 *End Destination:* ${data.endDestination}\n`;
+                }
+                if (data.startDate) {
+                    message += `🗓️ *Start Date:* ${data.startDate}\n`;
+                }
+                if (data.endDate) {
+                    message += `🗓️ *End Date:* ${data.endDate}\n`;
+                }
+                if (data.numberOfPeople) {
+                    message += `👥 *Number of People:* ${data.numberOfPeople}\n`;
+                }
 
             message += `💬 *Message:* ${data.message}\n`;
         }
