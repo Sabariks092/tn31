@@ -1,325 +1,214 @@
- const packages = [
-    {
-        id: 1,
-        title: "TEMPLE TRAIL TAMIL NADU",
-        tag: "Spiritual Journey",
-        destination: "Madurai, Rameshwaram, Kanyakumari",
-        duration: "5 Days / 4 Nights",
-        accommodation: "3-star hotels",
-        meals: "All meals included",
-        price: "RS. 12,999 ONLY",
-        image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
-        subtitle: "Explore the spiritual heart of Tamil Nadu",
-        highlights: [
-            { label: "Duration", value: "5D/4N" },
-            { label: "Temples", value: "10+ Sacred Sites" },
-            { label: "Meals", value: "All Included" },
-            { label: "Transport", value: "AC Vehicle" }
-        ],
-        inclusions: [
-            "4 nights accommodation in comfortable hotels",
-            "Daily breakfast, lunch, and dinner",
-            "AC vehicle for all transfers and sightseeing",
-            "Professional tour guide",
-            "Entry fees to all temples and monuments",
-            "Kanyakumari sunrise viewing"
-        ],
-        itinerary: "Day 1: Arrival in Madurai, visit Meenakshi Temple. Day 2: Madurai local sightseeing including Thirumalai Nayakkar Palace. Day 3: Drive to Rameshwaram, visit Ramanathaswamy Temple. Day 4: Rameshwaram to Kanyakumari, visit Vivekananda Rock Memorial. Day 5: Sunrise at Kanyakumari, departure.",
-        bestTime: "October to March is the ideal time to visit Tamil Nadu temples. The weather is pleasant and comfortable for sightseeing. Avoid summer months (April-June) due to extreme heat."
-    },
-    {
-        id: 2,
-        title: "HILL STATION RETREAT",
-        tag: "Nature Escape",
-        destination: "Ooty, Coonoor, Kotagiri",
-        duration: "4 Days / 3 Nights",
-        accommodation: "Premium resorts",
-        meals: "Breakfast included",
-        price: "RS. 15,999 ONLY",
-        image: "https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?w=800&q=80",
-        subtitle: "Experience the Queen of Hill Stations",
-        highlights: [
-            { label: "Duration", value: "4D/3N" },
-            { label: "Altitude", value: "2,240m Peak" },
-            { label: "Climate", value: "Cool & Pleasant" },
-            { label: "Activities", value: "Nature Walks" }
-        ],
-        inclusions: [
-            "3 nights in premium hill resort",
-            "Daily breakfast with mountain views",
-            "Toy train ride from Mettupalayam to Ooty",
-            "Botanical Garden and Rose Garden entry",
-            "Boat ride in Ooty Lake",
-            "Visit to tea estates with tasting session"
-        ],
-        itinerary: "Day 1: Arrival via Toy Train, check-in and evening at Ooty Lake. Day 2: Visit Botanical Garden, Rose Garden, and Doddabetta Peak. Day 3: Day trip to Coonoor - Sim's Park, Lamb's Rock, Dolphin's Nose. Day 4: Visit tea estates, shopping at Ooty market, departure.",
-        bestTime: "April to June and September to November are the best months. Summer offers pleasant weather while autumn brings clear skies. Winter (December-February) can be quite cold but beautiful."
-    },
-    {
-        id: 3,
-        title: "COASTAL PARADISE",
-        tag: "Beach Bliss",
-        destination: "Mahabalipuram, Pondicherry",
-        duration: "3 Days / 2 Nights",
-        accommodation: "Beach resorts",
-        meals: "Breakfast & Dinner",
-        price: "RS. 9,999 ONLY",
-        image: "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=800&q=80",
-        subtitle: "Sun, sand, and heritage by the Bay of Bengal",
-        highlights: [
-            { label: "Duration", value: "3D/2N" },
-            { label: "Beaches", value: "5+ Pristine" },
-            { label: "UNESCO Sites", value: "Shore Temple" },
-            { label: "Cuisine", value: "French & Tamil" }
-        ],
-        inclusions: [
-            "2 nights beachfront accommodation",
-            "Daily breakfast and dinner",
-            "UNESCO World Heritage site tours",
-            "Auroville visit with guide",
-            "Beach activities - volleyball, frisbee",
-            "French Quarter walking tour in Pondicherry"
-        ],
-        itinerary: "Day 1: Arrive in Mahabalipuram, visit Shore Temple, Five Rathas, Arjuna's Penance. Evening at beach. Day 2: Morning at beach, drive to Pondicherry, explore French Quarter, Auroville visit. Day 3: Promenade Beach, shopping at local markets, departure.",
-        bestTime: "November to February is perfect for beach activities with cool weather. March to May can be hot but less crowded. Avoid monsoon season (June-September) due to rough seas."
-    },
-    {
-        id: 4,
-        title: "WILDLIFE EXPLORER",
-        tag: "Adventure Safari",
-        destination: "Mudumalai, Bandipur",
-        duration: "3 Days / 2 Nights",
-        accommodation: "Forest lodges",
-        meals: "All meals included",
-        price: "RS. 11,999 ONLY",
-        image: "https://images.unsplash.com/photo-1549366021-9f761d450615?w=800&q=80",
-        subtitle: "Encounter the wild side of Tamil Nadu",
-        highlights: [
-            { label: "Duration", value: "3D/2N" },
-            { label: "Safaris", value: "4 Game Drives" },
-            { label: "Wildlife", value: "Elephants, Tigers" },
-            { label: "Birds", value: "200+ Species" }
-        ],
-        inclusions: [
-            "2 nights in jungle lodge",
-            "All meals (breakfast, lunch, dinner)",
-            "4 safari rides (2 morning, 2 evening)",
-            "Experienced naturalist guide",
-            "Forest department permits",
-            "Bird watching sessions"
-        ],
-        itinerary: "Day 1: Arrival, settle in lodge, evening safari in Mudumalai. Day 2: Early morning safari, after breakfast visit Theppakadu Elephant Camp, evening safari in Bandipur. Day 3: Final morning safari, nature walk, departure after lunch.",
-        bestTime: "October to May is the best period for wildlife viewing. The forest is closed during monsoon (June-September). Winter months (December-February) offer the best chance for tiger sightings."
-    },
-    {
-        id: 5,
-        title: "HERITAGE CIRCUIT",
-        tag: "Cultural Tour",
-        destination: "Kumbakonam, Thanjavur, Trichy",
-        duration: "4 Days / 3 Nights",
-        accommodation: "Heritage hotels",
-        meals: "All meals included",
-        price: "RS. 13,999 ONLY",
-        image: "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&q=80",
-        subtitle: "Discover the architectural marvels of ancient Tamil Nadu",
-        highlights: [
-            { label: "Duration", value: "4D/3N" },
-            { label: "Temples", value: "15+ Heritage Sites" },
-            { label: "Architecture", value: "Dravidian Style" },
-            { label: "Culture", value: "Living History" }
-        ],
-        inclusions: [
-            "3 nights in heritage hotels",
-            "All meals including traditional cuisine",
-            "Expert heritage guide",
-            "Entry fees to all monuments",
-            "Traditional cultural show",
-            "Photography permits"
-        ],
-        itinerary: "Day 1: Arrival in Kumbakonam, visit Navagraha temples. Day 2: Thanjavur - Brihadeeswarar Temple, Palace. Day 3: Trichy - Rock Fort Temple, Srirangam. Day 4: Local artisan villages, departure.",
-        bestTime: "October to March offers pleasant weather for heritage exploration. Avoid peak summer months when temperatures can be extreme."
-    },
-    {
-        id: 5,
-        title: "HERITAGE CIRCUIT",
-        tag: "Cultural Tour",
-        destination: "Kumbakonam, Thanjavur, Trichy",
-        duration: "4 Days / 3 Nights",
-        accommodation: "Heritage hotels",
-        meals: "All meals included",
-        price: "RS. 13,999 ONLY",
-        image: "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&q=80",
-        subtitle: "Discover the architectural marvels of ancient Tamil Nadu",
-        highlights: [
-            { label: "Duration", value: "4D/3N" },
-            { label: "Temples", value: "15+ Heritage Sites" },
-            { label: "Architecture", value: "Dravidian Style" },
-            { label: "Culture", value: "Living History" }
-        ],
-        inclusions: [
-            "3 nights in heritage hotels",
-            "All meals including traditional cuisine",
-            "Expert heritage guide",
-            "Entry fees to all monuments",
-            "Traditional cultural show",
-            "Photography permits"
-        ],
-        itinerary: "Day 1: Arrival in Kumbakonam, visit Navagraha temples. Day 2: Thanjavur - Brihadeeswarar Temple, Palace. Day 3: Trichy - Rock Fort Temple, Srirangam. Day 4: Local artisan villages, departure.",
-        bestTime: "October to March offers pleasant weather for heritage exploration. Avoid peak summer months when temperatures can be extreme."
-    },
-    {
-        id: 5,
-        title: "HERITAGE CIRCUIT",
-        tag: "Cultural Tour",
-        destination: "Kumbakonam, Thanjavur, Trichy",
-        duration: "4 Days / 3 Nights",
-        accommodation: "Heritage hotels",
-        meals: "All meals included",
-        price: "RS. 13,999 ONLY",
-        image: "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&q=80",
-        subtitle: "Discover the architectural marvels of ancient Tamil Nadu",
-        highlights: [
-            { label: "Duration", value: "4D/3N" },
-            { label: "Temples", value: "15+ Heritage Sites" },
-            { label: "Architecture", value: "Dravidian Style" },
-            { label: "Culture", value: "Living History" }
-        ],
-        inclusions: [
-            "3 nights in heritage hotels",
-            "All meals including traditional cuisine",
-            "Expert heritage guide",
-            "Entry fees to all monuments",
-            "Traditional cultural show",
-            "Photography permits"
-        ],
-        itinerary: "Day 1: Arrival in Kumbakonam, visit Navagraha temples. Day 2: Thanjavur - Brihadeeswarar Temple, Palace. Day 3: Trichy - Rock Fort Temple, Srirangam. Day 4: Local artisan villages, departure.",
-        bestTime: "October to March offers pleasant weather for heritage exploration. Avoid peak summer months when temperatures can be extreme."
-    },
-    {
-        id: 5,
-        title: "HERITAGE CIRCUIT",
-        tag: "Cultural Tour",
-        destination: "Kumbakonam, Thanjavur, Trichy",
-        duration: "4 Days / 3 Nights",
-        accommodation: "Heritage hotels",
-        meals: "All meals included",
-        price: "RS. 13,999 ONLY",
-        image: "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&q=80",
-        subtitle: "Discover the architectural marvels of ancient Tamil Nadu",
-        highlights: [
-            { label: "Duration", value: "4D/3N" },
-            { label: "Temples", value: "15+ Heritage Sites" },
-            { label: "Architecture", value: "Dravidian Style" },
-            { label: "Culture", value: "Living History" }
-        ],
-        inclusions: [
-            "3 nights in heritage hotels",
-            "All meals including traditional cuisine",
-            "Expert heritage guide",
-            "Entry fees to all monuments",
-            "Traditional cultural show",
-            "Photography permits"
-        ],
-        itinerary: "Day 1: Arrival in Kumbakonam, visit Navagraha temples. Day 2: Thanjavur - Brihadeeswarar Temple, Palace. Day 3: Trichy - Rock Fort Temple, Srirangam. Day 4: Local artisan villages, departure.",
-        bestTime: "October to March offers pleasant weather for heritage exploration. Avoid peak summer months when temperatures can be extreme."
-    },
+// Make sure Bootstrap JS (bundle) is loaded before this file.
+
+// ===== PACKAGE DATA =====
+const packages = [
+  {
+    id: 1,
+    title: "TEMPLE TRAIL TAMIL NADU",
+    tag: "Spiritual Journey",
+    destination: "Madurai, Rameshwaram, Kanyakumari",
+    duration: "5 Days / 4 Nights",
+    accommodation: "3-star hotels",
+    meals: "All meals included",
+    price: "RS. 12,999 ONLY",
+    image:
+      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+    subtitle: "Explore the spiritual heart of Tamil Nadu",
+    highlights: [
+      { label: "Duration", value: "5D / 4N" },
+      { label: "Temples", value: "10+ Sacred Sites" },
+      { label: "Meals", value: "All Included" },
+      { label: "Transport", value: "AC Vehicle" }
+    ]
+  },
+  {
+    id: 2,
+    title: "HILL STATION RETREAT",
+    tag: "Nature Escape",
+    destination: "Ooty, Coonoor, Kotagiri",
+    duration: "4 Days / 3 Nights",
+    accommodation: "Premium resorts",
+    meals: "Breakfast included",
+    price: "RS. 15,999 ONLY",
+    image:
+      "https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?w=800&q=80",
+    subtitle: "Experience the Queen of Hill Stations",
+    highlights: [
+      { label: "Duration", value: "4D / 3N" },
+      { label: "Altitude", value: "2,240m Peak" },
+      { label: "Climate", value: "Cool & Pleasant" },
+      { label: "Activities", value: "Nature Walks" }
+    ]
+  },
+  {
+    id: 3,
+    title: "COASTAL PARADISE",
+    tag: "Beach Bliss",
+    destination: "Mahabalipuram, Pondicherry",
+    duration: "3 Days / 2 Nights",
+    accommodation: "Beach resorts",
+    meals: "Breakfast & Dinner",
+    price: "RS. 9,999 ONLY",
+    image:
+      "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=800&q=80",
+    subtitle: "Sun, sand, and heritage by the Bay of Bengal",
+    highlights: [
+      { label: "Duration", value: "3D / 2N" },
+      { label: "Beaches", value: "5+ Pristine" },
+      { label: "UNESCO Sites", value: "Shore Temple" },
+      { label: "Cuisine", value: "French & Tamil" }
+    ]
+  },
+  {
+    id: 4,
+    title: "WILDLIFE EXPLORER",
+    tag: "Adventure Safari",
+    destination: "Mudumalai, Bandipur",
+    duration: "3 Days / 2 Nights",
+    accommodation: "Forest lodges",
+    meals: "All meals included",
+    price: "RS. 11,999 ONLY",
+    image:
+      "https://images.unsplash.com/photo-1549366021-9f761d450615?w=800&q=80",
+    subtitle: "Encounter the wild side of Tamil Nadu",
+    highlights: [
+      { label: "Duration", value: "3D / 2N" },
+      { label: "Safaris", value: "4 Game Drives" },
+      { label: "Wildlife", value: "Elephants, Tigers" },
+      { label: "Birds", value: "200+ Species" }
+    ]
+  },
+  {
+    id: 5,
+    title: "HERITAGE & CULTURE TRAIL",
+    tag: "Heritage Walk",
+    destination: "Thanjavur, Trichy, Kumbakonam",
+    duration: "4 Days / 3 Nights",
+    accommodation: "Boutique stays",
+    meals: "Breakfast & Dinner",
+    price: "RS. 10,999 ONLY",
+    image:
+      "https://images.unsplash.com/photo-1524492514791-6773f22686ab?w=800&q=80",
+    subtitle: "Dive deep into Tamil Nadu’s rich heritage",
+    highlights: [
+      { label: "UNESCO Temples", value: "3+" },
+      { label: "Cultural Shows", value: "Traditional Arts" },
+      { label: "Cuisine", value: "Authentic Tamil Meals" },
+      { label: "Guided Tours", value: "Local Experts" }
+    ]
+  },
+  {
+    id: 6,
+    title: "FAMILY FUN TAMIL NADU",
+    tag: "Family Special",
+    destination: "Chennai, Mahabalipuram, Pondicherry",
+    duration: "5 Days / 4 Nights",
+    accommodation: "Family-friendly hotels",
+    meals: "Breakfast included",
+    price: "RS. 13,499 ONLY",
+    image:
+      "https://images.unsplash.com/photo-1526779259212-939e64788e3c?w=800&q=80",
+    subtitle: "Perfect mix of fun, learning and relaxation",
+    highlights: [
+      { label: "Kid-friendly", value: "Activities & Play" },
+      { label: "Beaches", value: "Safe & Clean" },
+      { label: "Attractions", value: "Museums & Parks" },
+      { label: "Pace", value: "Relaxed Itinerary" }
+    ]
+  },
+  {
+    id: 7,
+    title: "WEEKEND GETAWAY",
+    tag: "Short Break",
+    destination: "Yelagiri / Yercaud (Seasonal)",
+    duration: "2 Days / 1 Night",
+    accommodation: "Comfort stays",
+    meals: "Breakfast included",
+    price: "RS. 7,999 ONLY",
+    image:
+      "https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?w=800&q=80",
+    subtitle: "Quick escape to the hills to recharge",
+    highlights: [
+      { label: "Duration", value: "2D / 1N" },
+      { label: "Drive Time", value: "4–6 hrs from Chennai" },
+      { label: "Activities", value: "Trekking / Boating" },
+      { label: "Best For", value: "Couples & Friends" }
+    ]
+  },
+  {
+    id: 8,
+    title: "FULL TAMIL NADU CIRCUIT",
+    tag: "Grand Tour",
+    destination: "Chennai, Madurai, Rameshwaram, Kanyakumari, Ooty",
+    duration: "10 Days / 9 Nights",
+    accommodation: "Mixed — city & hill stays",
+    meals: "Breakfast included",
+    price: "RS. 24,999 ONLY",
+    image:
+      "https://images.unsplash.com/photo-1541417904950-b855846fe074?w=800&q=80",
+    subtitle: "One grand circuit covering iconic TN destinations",
+    highlights: [
+      { label: "Major Cities", value: "5+" },
+      { label: "Experiences", value: "Temple, Beach, Hills" },
+      { label: "Ideal For", value: "Families & Groups" },
+      { label: "Customisation", value: "Highly Flexible" }
+    ]
+  }
 ];
 
-let currentPage = 1;
-const perPage = 4;
+// ===== MODAL LOGIC (Bootstrap) =====
+function openModal(id) {
+  const pkg = packages.find((p) => p.id === id);
+  if (!pkg) return;
+
+  // Populate modal content
+  const imgEl = document.getElementById("packageModalImage");
+  const titleEl = document.getElementById("packageModalLabel");
+  const tagEl = document.getElementById("packageModalTag");
+  const priceEl = document.getElementById("packageModalPrice");
+  const metaEl = document.getElementById("packageModalMeta");
+  const descEl = document.getElementById("packageModalDescription");
+  const highlightsEl = document.getElementById("packageModalHighlights");
+
+  if (imgEl) {
+    imgEl.src = pkg.image;
+    imgEl.alt = pkg.title;
+  }
+  if (titleEl) titleEl.textContent = pkg.title;
+  if (tagEl) tagEl.textContent = pkg.tag;
+  if (priceEl) priceEl.textContent = pkg.price;
+//   if (descEl) descEl.textContent = pkg.subtitle;
 
 
-        function renderPackages() {
-    const grid = document.getElementById('packagesGrid');
-    grid.innerHTML = "";
 
-    const start = (currentPage - 1) * perPage;
-    const end = start + perPage;
-    const paginatedItems = packages.slice(start, end);
+  // Highlights
+  if (highlightsEl) {
+    highlightsEl.innerHTML = pkg.highlights
+      .map(
+        (h) => `
+      <li class="mb-1">
+        <i class="bi bi-check-circle-fill text-success me-2"></i>
+        <strong>${h.label}:</strong> ${h.value}
+      </li>
+    `
+      )
+      .join("");
+  }
 
-    grid.innerHTML = paginatedItems.map((pkg, index) => `
-        <div class="package-card" style="animation-delay: ${index * 0.1}s" onclick="openModal(${pkg.id})">
-            <img src="${pkg.image}" alt="${pkg.title}" class="package-image" loading="lazy">
-            <div class="diagonal-overlay"></div>
-            <div class="logo">
-                <img src="./assets/img/common/tn31logo.jpg" alt="TN-31 Logo" />
-            </div>
-            <div class="package-content">
-                <div class="package-tag">${pkg.tag}</div>
-                <h2 class="package-title">${pkg.title}</h2>
-                <div class="price-tag">${pkg.price}</div>
-            </div>
-        </div>
-    `).join('');
+    // Meta list (destination, duration, etc.)
+  if (metaEl) {
+    metaEl.innerHTML = `
+      <li><i class="bi bi-geo-alt-fill text-danger me-2"></i><strong>Destination:</strong> ${pkg.destination}</li>
+      <li><i class="bi bi-clock-fill text-primary me-2"></i><strong>Duration:</strong> ${pkg.duration}</li>
+      <li><i class="bi bi-house-door-fill text-success me-2"></i><strong>Stay:</strong> ${pkg.accommodation}</li>
+      <li><i class="bi bi-egg-fried text-warning me-2"></i><strong>Meals:</strong> ${pkg.meals}</li>
+    `;
+  }
+
+  // Show Bootstrap modal
+  const modalEl = document.getElementById("packageModal");
+  if (!modalEl) return;
+
+  const modalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+  modalInstance.show();
 }
-
-
-        function openModal(id) {
-            const pkg = packages.find(p => p.id === id);
-            if (!pkg) return;
-
-            document.getElementById('modalImage').src = pkg.image;
-            document.getElementById('modalTitle').textContent = pkg.title;
-            document.getElementById('modalSubtitle').textContent = pkg.subtitle;
-            document.getElementById('modalPrice').textContent = pkg.price;
-
-            // Highlights
-            document.getElementById('modalHighlights').innerHTML = pkg.highlights.map(h => `
-                <div class="highlight-item">
-                    <strong>${h.label}</strong>
-                    <span>${h.value}</span>
-                </div>
-            `).join('');
-
-            // Inclusions
-            document.getElementById('modalInclusions').innerHTML = pkg.inclusions.map(i => `
-                <li>${i}</li>
-            `).join('');
-
-            document.getElementById('modalItinerary').textContent = pkg.itinerary;
-            document.getElementById('modalBestTime').textContent = pkg.bestTime;
-
-            document.getElementById('packageModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('packageModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function bookPackage() {
-            alert('Thank you for your interest! Our travel consultant will contact you shortly to complete your booking.');
-        }
-
-        // Close modal on outside click
-        document.getElementById('packageModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        function nextPage() {
-    if (currentPage * perPage < packages.length) {
-        currentPage++;
-        renderPackages();
-    }
-}
-
-function prevPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        renderPackages();
-    }
-}
-
-
-        // Initialize
-        renderPackages();
